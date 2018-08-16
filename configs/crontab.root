@@ -1,0 +1,5 @@
+AWS_KEY="XXXXX"
+AWS_SECRET="XXXXX"
+GITLAB_TOKEN="XXXXX"
+*/10 * * * * python3.6 /root/gitlab-ci-ami/min_bid_price.py
+*/3 * * * * python3.6 /root/gitlab-ci-ami/spot_sniper.py

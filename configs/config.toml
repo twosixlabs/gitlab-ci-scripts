@@ -1,0 +1,40 @@
+concurrent = 80
+check_interval = 0
+
+[[runners]]
+  name = "alpine"
+  limit = 80
+  url = "https://example.com/“
+  token = “XXXXX”
+  executor = "docker+machine"
+  output_limit = 16384
+  [runners.docker]
+    tls_verify = true
+    image = “BUILD_IMAGE_TAG”
+    privileged = true
+    disable_cache = true
+    shm_size = 0
+    volumes = ["/var/run/docker.sock:/var/run/docker.sock","/builds:/builds","/cache:/cache"]
+  [runners.cache]
+  [runners.machine]
+    MachineDriver = "amazonec2"
+    MaxBuilds = 1
+    MachineName = "gitlab-docker-machine-%s"
+    OffPeakIdleCount = 0
+    OffPeakIdleTime = 0
+    IdleCount = 0
+    IdleTime = 0
+    MachineOptions = [
+      "amazonec2-request-spot-instance=true",
+      "amazonec2-spot-price=0.080",
+      "amazonec2-access-key=XXXXX”,
+      "amazonec2-secret-key=XXXXX”,
+      "amazonec2-ssh-user=ubuntu", 
+      "amazonec2-region=us-east-2", 
+      "amazonec2-instance-type=m4.xlarge",
+      "amazonec2-ami=ami-XXXXX”,
+      "amazonec2-root-size=50",
+      "amazonec2-zone=a", 
+      "amazonec2-userdata=/etc/gitlab-runner/user-data.sh",
+      "amazonec2-use-ebs-optimized-instance=true",
+    ]

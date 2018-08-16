@@ -1,0 +1,3 @@
+GITLAB_TOKEN=XXXXX
+* * * * * python3 /home/ubuntu/check_termination.py
+
